@@ -25,7 +25,10 @@ var (
 		{"wo ai 北京", 10, "-", "wo-ai-bei"},
 		{"wo ai 北京", 7, "-", "wo-ai-b"},
 		{"wo ai 北京", 1, "-", "w"},
+		{"Antonín Dvořák", 50, "-", "antonin-dvorak"},
 		{"-a -- b__c", 50, "-", "a-b-c"},
+		{"Schindler's List", 50, "-", "schindlers-list"},
+		{"Schindler's List", 10, "-", "schindlers"},
 	}
 )
 
