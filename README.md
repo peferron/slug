@@ -1,4 +1,8 @@
 go-slug
 =======
 
-Generate URL-ready slugs. Example: "A Lovely Day" -> "a-lovely-day", "北京" -> "bei-jing".
+Generate URL-ready slugs. Examples:
+- A Lovely Day -> a-lovely-day
+- 北京 -> bei-jing
+
+[![GoDoc](https://godoc.org/github.com/peferron/go-slug?status.png)](https://godoc.org/github.com/peferron/go-slug)
