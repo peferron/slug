@@ -4,7 +4,7 @@
 //
 //	package main
 //
-//	import "github.com/peferron/go-slug"
+//	import "github.com/peferron/slug"
 //
 //	func main() {
 //		s := slug.Slug("Hello World!", 50, "-")
