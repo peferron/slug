@@ -1,4 +1,4 @@
-// Package slug provides utilities for generating typical URL slugs.
+// Package slug provides utilities for generating URL-friendly slugs.
 package slug
 
 import (
