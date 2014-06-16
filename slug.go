@@ -1,4 +1,17 @@
-// Package slug provides utilities for generating URL-friendly slugs.
+// Package slug provides an utility for generating URL-friendly slugs.
+//
+// Example:
+//
+//	package main
+//
+//	import (
+//		"github.com/peferron/go-slug"
+//	)
+//
+//	func main() {
+//		s := slug.Slug("Hello World!", 50, "-")
+//		print(s) // Prints "hello-world"
+//	}
 package slug
 
 import (
