@@ -19,13 +19,19 @@ import (
 	"github.com/fiam/gounidecode/unidecode"
 )
 
-// Slug returns a slug generated from s, with the maximum length l and the separator sep.
-func Slug(s string, l int, sep string) string {
+// Generate returns a slug generated from s, with sensible default parameters.
+func Generate(s string) string {
+	return GenerateWith(s, ` ,./\-_=~|()[]{}:;?!<>`, "-", 100)
+}
+
+// GenerateWith returns a slug generated from s, with all Unicode code points in chars replaced by
+// the separator sep, and the final maximum length l.
+func GenerateWith(s, chars, sep string, l int) string {
 	decoded := unidecode.Unidecode(s)
 	slug := ""
 
 	for _, d := range decoded {
-		r := convert(d, sep)
+		r := convert(d, chars, sep)
 
 		switch r {
 		case "":
@@ -47,14 +53,13 @@ func Slug(s string, l int, sep string) string {
 }
 
 // convert returns the slug representation of r, using the separator sep.
-func convert(r rune, sep string) string {
+func convert(r rune, chars, sep string) string {
 	switch {
 	case 'a' <= r && r <= 'z' || '0' <= r && r <= '9':
 		return string(r)
 	case 'A' <= r && r <= 'Z':
 		return string(unicode.ToLower(r))
-	case r == ' ' || r == ',' || r == '.' || r == '/' || r == '\\' || r == '-' || r == '_' ||
-		r == '=':
+	case strings.ContainsRune(chars, r):
 		return sep
 	}
 	return ""
