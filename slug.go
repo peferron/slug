@@ -7,7 +7,7 @@
 //	import "github.com/peferron/slug"
 //
 //	func main() {
-//		s := slug.Slug("Hello World!", 50, "-")
+//		s := slug.Generate("Hello World!")
 //		print(s) // Prints "hello-world"
 //	}
 package slug
