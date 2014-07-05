@@ -2,12 +2,13 @@
 
 slug is a Go library for generating URL-friendly [slugs](http://en.wikipedia.org/wiki/Slug_%28web_publishing%29#Slug).
 
-#### Examples
+## Examples
 
-- A Lovely Day → a-lovely-day
-- Living in 北京 → living-in-bei-jing
+Before and after:
+- `A Lovely Day` → `a-lovely-day`
+- `Living in 北京` → `living-in-bei-jing`
 
-#### Usage
+## Usage
 
 ```go
 package main
@@ -20,4 +21,4 @@ func main() {
 }
 ```
 
-[API reference](https://godoc.org/github.com/peferron/slug)
+See the full [API reference](https://godoc.org/github.com/peferron/slug).
