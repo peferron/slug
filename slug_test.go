@@ -46,7 +46,7 @@ var (
 func TestGenerate(t *testing.T) {
 	for _, test := range generateTests {
 		if out := Generate(test.iS); out != test.oS {
-			t.Errorf("For input string '%s', expected output '%s' (len %d), was '%s' (len %d)",
+			t.Errorf("For input string %q, expected output %q (len %d), was %q (len %d)",
 				test.iS, test.oS, len(test.oS), out, len(out))
 		}
 	}
@@ -55,8 +55,8 @@ func TestGenerate(t *testing.T) {
 func TestGenerateWith(t *testing.T) {
 	for _, test := range generateWithTests {
 		if out := GenerateWith(test.iS, test.iChars, test.iSep, test.iL); out != test.oS {
-			t.Errorf("For input string '%s', chars '%s', separator '%s' and maximum length %d, "+
-				"expected output '%s' (len %d), was '%s' (len %d)",
+			t.Errorf("For input string %q, chars %q, separator %q and maximum length %d, "+
+				"expected output %q (len %d), was %q (len %d)",
 				test.iS, test.iChars, test.iSep, test.iL,
 				test.oS, len(test.oS), out, len(out))
 		}
