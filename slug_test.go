@@ -1,11 +1,9 @@
 package slug
 
-import (
-	"testing"
-)
+import "testing"
 
-var (
-	generateTests = []struct {
+func TestGenerate(t *testing.T) {
+	tests := []struct {
 		iS string
 		oS string
 	}{
@@ -19,7 +17,16 @@ var (
 		{"Schindler's List", "schindlers-list"},
 	}
 
-	generateWithTests = []struct {
+	for _, test := range tests {
+		if out := Generate(test.iS); out != test.oS {
+			t.Errorf("For input string %q, expected output %q (len %d), was %q (len %d)",
+				test.iS, test.oS, len(test.oS), out, len(out))
+		}
+	}
+}
+
+func TestGenerateWith(t *testing.T) {
+	tests := []struct {
 		iS     string
 		iChars string
 		iSep   string
@@ -41,19 +48,8 @@ var (
 		{"Schindler's List", " '", "-", 100, "schindler-s-list"},
 		{"Schindler's List", " '", "-", 10, "schindler"},
 	}
-)
 
-func TestGenerate(t *testing.T) {
-	for _, test := range generateTests {
-		if out := Generate(test.iS); out != test.oS {
-			t.Errorf("For input string %q, expected output %q (len %d), was %q (len %d)",
-				test.iS, test.oS, len(test.oS), out, len(out))
-		}
-	}
-}
-
-func TestGenerateWith(t *testing.T) {
-	for _, test := range generateWithTests {
+	for _, test := range tests {
 		if out := GenerateWith(test.iS, test.iChars, test.iSep, test.iL); out != test.oS {
 			t.Errorf("For input string %q, chars %q, separator %q and maximum length %d, "+
 				"expected output %q (len %d), was %q (len %d)",
