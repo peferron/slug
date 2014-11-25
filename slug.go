@@ -13,8 +13,8 @@
 package slug
 
 import (
+	"regexp"
 	"strings"
-	"unicode"
 
 	"github.com/fiam/gounidecode/unidecode"
 )
@@ -28,39 +28,27 @@ func Generate(s string) string {
 // the separator sep, and the final maximum length l.
 func GenerateWith(s, chars, sep string, l int) string {
 	decoded := unidecode.Unidecode(s)
-	slug := ""
+	slug := strings.ToLower(decoded)
 
-	for _, d := range decoded {
-		r := convert(d, chars, sep)
+	// remove non-alphanumeric chars, except those in `chars`
+	slug = replaceAll("[^a-z0-9" + regexp.QuoteMeta(chars) + "]", slug, "")
 
-		switch r {
-		case "":
-			continue
-		case sep:
-			if len(slug) > 0 && !strings.HasSuffix(slug, sep) {
-				slug += sep
-			}
-		default:
-			slug += string(r)
-		}
+	// replace everything appearing in `chars` with seperator
+	if len(chars) > 0 {
+		slug = replaceAll("[" + regexp.QuoteMeta(chars) + "]+", slug, sep)
+	}
 
-		if len(slug) >= l {
-			break
-		}
+	// remove prefixed seperator if present and enforce max length
+	slug = strings.TrimPrefix(slug, sep)
+	if len(slug) > l {
+		slug = slug[:l]
 	}
 
 	return strings.TrimSuffix(slug, sep)
 }
 
-// convert returns the slug representation of r, using the separator sep.
-func convert(r rune, chars, sep string) string {
-	switch {
-	case 'a' <= r && r <= 'z' || '0' <= r && r <= '9':
-		return string(r)
-	case 'A' <= r && r <= 'Z':
-		return string(unicode.ToLower(r))
-	case strings.ContainsRune(chars, r):
-		return sep
-	}
-	return ""
+// replaceAll replaces everything in src matching regex with repl
+func replaceAll(regex string, src string, repl string) string {
+	re := regexp.MustCompile(regex)
+	return re.ReplaceAllString(src, repl)
 }
