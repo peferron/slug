@@ -30,25 +30,23 @@ func GenerateWith(s, chars, sep string, l int) string {
 	slug := unidecode.Unidecode(s)
 	slug = strings.ToLower(slug)
 
-	// remove non-alphanumeric chars, except those in `chars`
+	// Keep only alphanumeric characters and characters appearing in chars.
 	quotedChars := regexp.QuoteMeta(chars)
 	slug = replaceAll("[^a-z0-9"+quotedChars+"]", slug, "")
 
-	// replace everything appearing in `chars` with seperator
+	// Replace characters appearing in chars with a single separator.
 	if len(chars) > 0 {
 		slug = replaceAll("["+quotedChars+"]+", slug, sep)
 	}
 
-	// remove prefixed seperator if present and enforce max length
 	slug = strings.TrimPrefix(slug, sep)
 	if len(slug) > l {
 		slug = slug[:l]
 	}
-
 	return strings.TrimSuffix(slug, sep)
 }
 
-// replaceAll replaces everything in src matching regex with repl
+// replaceAll returns a copy of src, replacing matches of regex with the replacement text repl.
 func replaceAll(regex string, src string, repl string) string {
 	re := regexp.MustCompile(regex)
 	return re.ReplaceAllString(src, repl)
