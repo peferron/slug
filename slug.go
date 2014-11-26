@@ -27,8 +27,8 @@ func Generate(s string) string {
 // GenerateWith returns a slug generated from s, with all Unicode code points in chars replaced by
 // the separator sep, and the final maximum length l.
 func GenerateWith(s, chars, sep string, l int) string {
-	decoded := unidecode.Unidecode(s)
-	slug := strings.ToLower(decoded)
+	slug := unidecode.Unidecode(s)
+	slug = strings.ToLower(slug)
 
 	// remove non-alphanumeric chars, except those in `chars`
 	slug = replaceAll("[^a-z0-9" + regexp.QuoteMeta(chars) + "]", slug, "")
