@@ -31,11 +31,12 @@ func GenerateWith(s, chars, sep string, l int) string {
 	slug = strings.ToLower(slug)
 
 	// remove non-alphanumeric chars, except those in `chars`
-	slug = replaceAll("[^a-z0-9" + regexp.QuoteMeta(chars) + "]", slug, "")
+	quotedChars := regexp.QuoteMeta(chars)
+	slug = replaceAll("[^a-z0-9"+quotedChars+"]", slug, "")
 
 	// replace everything appearing in `chars` with seperator
 	if len(chars) > 0 {
-		slug = replaceAll("[" + regexp.QuoteMeta(chars) + "]+", slug, sep)
+		slug = replaceAll("["+quotedChars+"]+", slug, sep)
 	}
 
 	// remove prefixed seperator if present and enforce max length
