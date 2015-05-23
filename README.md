@@ -1,4 +1,4 @@
-# slug [![GoDoc](https://godoc.org/github.com/peferron/slug?status.png)](https://godoc.org/github.com/peferron/slug) [![Build Status](https://drone.io/github.com/peferron/slug/status.png)](https://drone.io/github.com/peferron/slug/latest) [![Coverage Status](https://coveralls.io/repos/peferron/slug/badge.png?branch=master)](https://coveralls.io/r/peferron/slug?branch=master)
+# slug [![GoDoc](https://godoc.org/github.com/peferron/slug?status.png)](https://godoc.org/github.com/peferron/slug) [![Build Status](https://travis-ci.org/peferron/slug.svg?branch=master)](https://travis-ci.org/peferron/slug) [![Coverage Status](https://coveralls.io/repos/peferron/slug/badge.png?branch=master)](https://coveralls.io/r/peferron/slug?branch=master)
 
 slug is a Go library for generating URL-friendly [slugs](http://en.wikipedia.org/wiki/Slug_%28web_publishing%29#Slug).
 
